@@ -1,0 +1,19 @@
+---
+ - name: creating user and add secondary group
+   hosts: all
+   vars_files:
+     - user_data.yml
+   tasks:
+     - name: creating group
+       group:
+         name: "{{ item.group }}"
+         state: present 
+       with_items: "{{ users }}"
+     - name: adding user
+       user:
+         name: "{{ item.name }}"
+         group: "{{ item.group }}"
+         state: present
+       with_items: "{{ users }}"
+
+
