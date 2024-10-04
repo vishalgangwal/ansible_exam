@@ -1,0 +1,20 @@
+---
+ - name: creating user
+   hosts: all
+   vars_files:
+     - user_list.yml 
+   tasks:
+     - name: creating group first
+       group:
+         name: "{{ item.group }}"
+         state: present  
+       with_items: "{{ users }}"
+
+     - name: creating user and group 
+       user:
+         name: "{{ item.name }}"
+         group: "{{ item.group }}"
+         state: present
+       with_items: "{{ users }}"
+
+

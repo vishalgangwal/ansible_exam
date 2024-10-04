@@ -1,0 +1,7 @@
+users:
+   - name: vishal
+     group: tester     
+   - name: mukesh
+     group: singh 
+   - name: lion
+     group: developer
