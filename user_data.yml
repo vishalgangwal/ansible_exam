@@ -1,8 +1,0 @@
-users:
-  - name: bob
-    group: developer
-  - name: ravi
-    group: grras
-  - name: mukesh
-    group: comedy
-

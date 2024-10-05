@@ -1,0 +1,17 @@
+---
+ - name: adding user full information
+   hosts: localhost
+   become: true
+   vars_files:
+    - user_list.yml  
+   tasks:
+    - name: adding user with 6 digit random encrypted password
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        password: "{{ password | password_hash('sha256')  }}"  
+        comment: "{{ item.first | capitalize }} {{ item.second | capitalize }} {{ item.last | capitalize }}  "  
+        state: present
+      with_items: "{{ users }}"    
+      vars:
+       - password: "{{ lookup('ansible.builtin.password', './password-{{item.name}}.txt length=6') }}"  

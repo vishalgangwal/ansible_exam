@@ -1,0 +1,17 @@
+---
+ - name: update the webserver if file to changes 
+   hosts: localhost 
+   become: true 
+   tasks:
+    - name: adding content
+      copy:
+        dest: /etc/myhosts
+        content: developer
+      tags: ['alpha' , 'never']
+    - name: adding tags using beta tags
+      copy: 
+        dest: /etc/myhosts
+        content: production
+      tags: ['beta' , 'never' ]
+
+
